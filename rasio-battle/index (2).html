@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rasio Battle – Kelas VII (TGT)</title>
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+
+  <!-- ============ LAYAR 1: PENGATURAN ============ -->
+  <section id="setup" class="screen active">
+    <div class="setup-card">
+      <h1>⚔️ Rasio Battle</h1>
+      <p class="sub">Matematika Kelas VII · Bab Rasio · Model Pembelajaran GBL</p>
+
+      <h2>1. Jumlah kelompok</h2>
+      <div id="teamCountBtns" class="count-btns"></div>
+
+      <h2>2. Nama kelompok <small>(boleh diubah)</small></h2>
+      <div id="teamNames" class="team-names"></div>
+
+      <h2>3. Pengaturan permainan</h2>
+      <div class="settings">
+        <label>Durasi permainan
+          <select id="optGameTime">
+            <option value="0">Tanpa batas (sampai 50 soal habis)</option>
+            <option value="10">10 menit</option>
+            <option value="15">15 menit</option>
+            <option value="20">20 menit</option>
+            <option value="30" selected>30 menit</option>
+            <option value="45">45 menit</option>
+            <option value="60">60 menit</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="optTimerOn" checked> Aktifkan timer soal (10 poin = 30 dtk · 20 poin = 45 dtk · 30 poin = 60 dtk)</label>
+        <label class="check"><input type="checkbox" id="optShuffle" checked> Acak posisi soal pada papan</label>
+        <label class="check"><input type="checkbox" id="optSound" checked> Efek suara</label>
+        <label class="check"><input type="checkbox" id="optThrowLife"> Jawaban benar pada soal lemparan juga +1 nyawa</label>
+      </div>
+
+      <div class="actions">
+        <button id="btnStart" class="btn primary big" type="button">Mulai Permainan ▶</button>
+        <button id="btnResume" class="btn" type="button" hidden>↩ Lanjutkan permainan terakhir</button>
+        <button id="btnRulesSetup" class="btn" type="button">📜 Aturan Bermain</button>
+      </div>
+
+      <p class="hint">Setiap kelompok mulai dengan <b>3 nyawa ❤️</b>. Poin tiap soal tampil di kotak papan sehingga siswa bisa memilih sendiri. Poin dan waktu mengikuti kategorinya: <b>10 poin = 30 detik, 20 poin = 45 detik, 30 poin = 60 detik</b>. Waktu memilih nomor <b>10 detik</b>, waktu menjawab soal lemparan <b>15 detik</b>. Hanya <b>ketua</b> yang menjawab, dan jawaban yang sudah diucapkan bersifat final.</p>
+    </div>
+  </section>
+
+  <!-- ============ LAYAR 2: PAPAN PERMAINAN ============ -->
+  <section id="game" class="screen">
+    <header class="topbar">
+      <div id="turnInfo" class="turn-info"></div>
+      <div class="top-actions">
+        <span id="pickTimer" class="clock pick" hidden></span>
+        <span id="gameClock" class="clock" hidden></span>
+        <span id="progress" class="progress"></span>
+        <button id="btnRandom" class="btn small" type="button" title="Guru memilih nomor secara acak">🎲 Acak</button>
+        <button id="btnPause" class="btn small" type="button">⏸ Jeda</button>
+        <button id="btnRules" class="btn small ghost" type="button">📜 Aturan</button>
+        <button id="btnFinish" class="btn small" type="button">🏁 Akhiri</button>
+        <button id="btnMenu" class="btn small ghost" type="button">⚙ Menu</button>
+      </div>
+    </header>
+
+    <main id="board" class="board" aria-label="Papan soal"></main>
+
+    <footer id="scoreboard" class="scoreboard" aria-label="Skor kelompok"></footer>
+  </section>
+
+  <!-- ============ LAYAR 3: HASIL ============ -->
+  <section id="result" class="screen">
+    <div class="result-card">
+      <h1 id="resultTitle">🏆 Permainan Selesai!</h1>
+      <p id="resultSub" class="sub"></p>
+      <ol id="rankList" class="rank-list"></ol>
+      <button id="btnAgain" class="btn primary big" type="button">🔄 Main Lagi</button>
+    </div>
+  </section>
+
+  <!-- ============ MODAL SOAL ============ -->
+  <div id="modal" class="modal" hidden>
+    <div id="modalBox" class="modal-box" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="qText">
+      <div class="modal-head">
+        <span id="qBadge" class="badge"></span>
+        <span id="qPts" class="pts-chip"></span>
+        <span id="qTurn" class="turn-chip"></span>
+        <div id="timerWrap" class="timer" hidden>
+          <div class="timer-track"><div id="timerBar" class="timer-bar"></div></div>
+          <span id="timerText" class="timer-text"></span>
+        </div>
+        <span id="gameClockModal" class="clock" hidden></span>
+        <button id="btnPauseModal" class="icon-btn" type="button" title="Jeda / lanjutkan waktu (P)">⏸</button>
+        <button id="btnClose" class="icon-btn" type="button" title="Tutup (Esc)">✕</button>
+      </div>
+      <div id="timeUpBanner" class="banner" hidden>⏰ Waktu permainan habis — selesaikan soal ini, lalu hasil akhir ditampilkan.</div>
+
+      <p id="qText" class="q-text"></p>
+      <div id="qOptions" class="options"></div>
+
+      <div id="answerControls" class="controls">
+        <div class="control-btns">
+          <button id="btnLock" class="btn primary big" type="button" disabled>Kunci Jawaban Ketua ✔</button>
+          <button id="btnGiveUp" class="btn" type="button">⏱ Waktu habis / tidak menjawab</button>
+        </div>
+        <p class="control-hint">Klik pilihan yang disebut <b>ketua</b> (atau tekan A–D), lalu <b>Kunci Jawaban</b>. Jawaban ketua bersifat final. Jika waktu habis, timer hanya menjadi penanda — guru tetap bisa mengunci jawaban, atau tekan <b>Waktu habis / tidak menjawab</b> untuk melempar soal.</p>
+      </div>
+
+      <div id="wrongBox" class="award wrong" hidden>
+        <div id="wrongMsg" class="award-title"></div>
+        <p class="control-hint">Ketua kelompok yang mau menjawab mengangkat tangan → klik kelompoknya. Jika lebih dari satu, guru melakukan <b>Spin</b>.</p>
+        <div id="throwList" class="throw-list"></div>
+        <div class="control-btns">
+          <button id="btnSpin" class="btn primary" type="button" disabled>Pilih kelompok dulu</button>
+          <button id="btnNobody" class="btn" type="button">🙅 Tidak ada yang mau menjawab</button>
+        </div>
+      </div>
+
+      <div id="explain" class="explain" hidden></div>
+
+      <div id="nextBox" class="modal-actions" hidden>
+        <button id="btnNext" class="btn primary big" type="button">Lanjut ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL ATURAN ============ -->
+  <div id="rulesModal" class="modal" hidden>
+    <div class="modal-box rules-box" role="dialog" aria-modal="true" aria-label="Aturan bermain">
+      <h2 class="rules-title">📜 Aturan Bermain</h2>
+      <ol class="rules-list">
+        <li>Kelompok yang mendapat giliran menyebut nomor soal (maksimal 10 detik; lewat itu guru memilih acak). Nomor yang sudah dibuka tidak bisa dipilih lagi. Akan ada 3 kategori soal: <b>poin 30 dengan waktu 60 detik</b>, <b>poin 20 dengan waktu 45 detik</b>, dan <b>poin 10 dengan waktu 30 detik</b>.</li>
+        <li>Soal ditampilkan dan timer berjalan. Hanya ketua yang menjawab: angkat tangan, lalu sebut jawaban. Selain ketua, jawaban lain tidak dihitung, dan jawaban ketua yang sudah diucapkan bersifat final.</li>
+        <li><b>Benar:</b> poin sesuai kategori dan nyawa +1 (maksimal 3). <b>Salah:</b> nyawa −1, poin tetap, soal dilempar. <b>Waktu habis:</b> tidak ada pengurangan apa pun, soal dilempar.</li>
+        <li>Ketua kelompok yang mau menjawab soal lemparan mengangkat tangan. Jika lebih dari satu, guru melakukan spin.</li>
+        <li>Kelompok terpilih soal lemparan menjawab dalam 15 detik dengan poin penuh. Jika salah, nyawa −1 dan soal dilempar lagi ke kelompok yang belum mencoba.</li>
+        <li>Soal selesai setelah ada yang benar atau tidak ada yang mau menjawab. Guru membahas jawabannya singkat.</li>
+        <li>Kelompok dengan nyawa 0 tidak boleh memilih soal, tetapi masih bisa ikut soal lemparan.</li>
+        <li>Permainan berakhir saat waktu habis. Pemenang: poin tertinggi; jika seri, nyawa terbanyak.</li>
+        <li>Dilarang berteriak, membocorkan jawaban, dan tidak ikut berdiskusi.</li>
+        <li>Keputusan guru bersifat final.</li>
+      </ol>
+      <div class="modal-actions"><button id="btnRulesClose" class="btn primary" type="button">Tutup</button></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="soal.js?v=1"></script>
+  <script src="script.js?v=1"></script>
+</body>
+</html>
