@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ratio Rise - SMP Kelas 7</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand"><span class="dot r"></span><span class="dot b"></span> Ratio Rise</div>
+  <div class="links">
+    <button data-page="home">Beranda</button>
+    <button data-page="materi">Materi</button>
+    <button data-page="simulasi">Simulasi</button>
+    <button data-page="latihan">Latihan</button>
+    <button data-page="kuis">Kuis</button>
+    <button data-page="battle">Rasio Battle</button>
+    <button data-page="pembuat">Kreator</button>
+  </div>
+</nav>
+
+<main>
+
+<section id="home" class="page active">
+  <div class="hero">
+    <div class="hero-teks">
+      <span class="chip">Matematika SMP Kelas 7</span>
+      <h1>Rasio itu perbandingan.<br>Yuk, <span class="sorot">kita coba sendiri.</span></h1>
+      <p class="lead">Belajar rasio untuk kelas 7 SMP: baca materi, main simulasi, lalu uji dirimu lewat latihan dan kuis.</p>
+      <div class="row">
+        <button class="btn" data-page="materi">Mulai dari materi</button>
+        <button class="btn ghost" data-page="simulasi">Coba simulasi</button>
+      </div>
+    </div>
+
+    <div class="hero-demo card" aria-label="Contoh rasio 2 banding 3 sama dengan 4 banding 6">
+      <p class="demo-judul">Contoh rasio</p>
+      <div class="titik-baris">
+        <span class="dot r mid"></span><span class="dot r mid"></span>
+        <span class="dot b mid"></span><span class="dot b mid"></span><span class="dot b mid"></span>
+      </div>
+      <p class="demo-rasio">2 merah : 3 biru</p>
+      <p class="demo-sama">sama dengan</p>
+      <div class="titik-baris baris2">
+        <span class="dot r mid"></span><span class="dot r mid"></span><span class="dot r mid"></span><span class="dot r mid"></span>
+        <span class="dot b mid"></span><span class="dot b mid"></span><span class="dot b mid"></span><span class="dot b mid"></span><span class="dot b mid"></span><span class="dot b mid"></span>
+      </div>
+      <p class="demo-rasio">4 merah : 6 biru</p>
+    </div>
+  </div>
+
+  <div class="fitur-grid">
+    <button class="fitur" data-page="materi"><span class="ikon">📖</span><b>Materi</b><small>Ringkasan materi lengkap</small></button>
+    <button class="fitur" data-page="simulasi"><span class="ikon">🎛️</span><b>Simulasi</b><small>Geser slider, lihat hasilnya</small></button>
+    <button class="fitur" data-page="latihan"><span class="ikon">✏️</span><b>Latihan</b><small>Soal per sub-bab dengan pembahasan</small></button>
+    <button class="fitur" data-page="kuis"><span class="ikon">🏆</span><b>Kuis</b><small>Uji dirimu, kumpulkan skor</small></button>
+    <button class="fitur" data-page="battle"><span class="ikon">⚔️</span><b>Rasio Battle</b><small>Kuis berkelompok ala permainan papan</small></button>
+    <button class="fitur" data-page="pembuat"><span class="ikon">👩‍🏫</span><b>Kreator</b><small>Kenalan dengan tim pengembang</small></button>
+  </div>
+
+  <div class="cp-tp">
+    <article class="card cp">
+      <h3>Capaian Pembelajaran</h3>
+      <p>Pada akhir Fase D, murid memiliki kemampuan membaca, menulis, dan membandingkan bilangan bulat, bilangan rasional, bilangan desimal, bilangan berpangkat bulat dan akar, bilangan dalam notasi ilmiah. Mereka dapat menerapkan operasi aritmetika pada bilangan real, dan memberikan estimasi/perkiraan dalam menyelesaikan masalah (termasuk berkaitan dengan literasi finansial). Murid dapat menggunakan rasio (skala, proporsi, dan laju perubahan) dalam penyelesaian masalah.</p>
+      <p class="sumber">Matematika Fase D, Elemen Bilangan</p>
+    </article>
+    <article class="card tp">
+      <h3>Tujuan Pembelajaran</h3>
+      <ol>
+        <li>Menjelaskan konsep rasio, berbagai bentuk rasio dan penggunaannya dalam kehidupan sehari-hari.</li>
+        <li>Membedakan antara selisih, yang merupakan perbandingan secara penjumlahan, dan rasio, yang merupakan perbandingan secara perkalian.</li>
+        <li>Menggunakan faktor skala untuk menyelesaikan masalah yang berhubungan dengan rasio.</li>
+        <li>Menghubungkan rasio ekuivalen dengan proporsi dalam penyelesaian masalah sehari-hari.</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<section id="materi" class="page">
+  <h2>Materi</h2>
+  <p class="lead">Pilih satu bagian. Ringkasannya tampil di bawah, lalu slide lengkapnya bisa kamu baca atau unduh.</p>
+  <div id="materi-menu" class="menu"></div>
+  <div id="materi-isi" class="card"><p>Pilih salah satu bagian materi di atas.</p></div>
+</section>
+
+<section id="simulasi" class="page">
+  <h2>Simulasi</h2>
+  <p class="lead">Pilih satu simulasi, lalu geser slider untuk mencobanya sendiri.</p>
+
+  <div class="menu sim-menu">
+    <button data-sim="1" class="on">1. Konsep Rasio</button>
+    <button data-sim="2">2. Selisih dan Rasio</button>
+    <button data-sim="3">3. Faktor Skala</button>
+    <button data-sim="4">4. Rasio Ekuivalen dan Proporsi</button>
+    <button data-sim="5">5. Laju Perubahan</button>
+  </div>
+
+  <div class="card">
+
+    <div id="sim-1" class="sim active">
+      <p>Geser slider untuk mengubah jumlah bola merah dan biru, lalu lihat rasionya.</p>
+      <label>Bola merah: <b id="n-r">3</b>
+        <input type="range" id="s-r" min="1" max="20" value="3"></label>
+      <label>Bola biru: <b id="n-b">5</b>
+        <input type="range" id="s-b" min="1" max="20" value="5"></label>
+      <div id="bola" class="bola" aria-live="polite"></div>
+      <p class="hasil">Rasio merah : biru = <b id="r-asli">3 : 5</b></p>
+      <p class="hasil">Bentuk paling sederhana = <b id="r-sederhana">3 : 5</b></p>
+      <p id="r-catatan" class="catatan"></p>
+    </div>
+
+    <div id="sim-2" class="sim">
+      <p>Dua bilangan A dan B dibandingkan lewat selisih dan rasio. Pilih operasi yang dilakukan pada keduanya, lalu lihat apa yang berubah.</p>
+      <div class="subtabs" id="mode2">
+        <button data-m="tambah" class="on">Penjumlahan</button>
+        <button data-m="kurang">Selisih (pengurangan)</button>
+        <button data-m="kali">Perkalian</button>
+      </div>
+      <label>Bilangan A: <b id="a2">4</b>
+        <input type="range" id="s2a" min="1" max="15" value="4"></label>
+      <label>Bilangan B: <b id="b2">8</b>
+        <input type="range" id="s2b" min="1" max="15" value="8"></label>
+      <label><span id="lab2">Keduanya ditambah</span>: <b id="t2">0</b>
+        <input type="range" id="s2t" min="0" max="20" value="0"></label>
+      <div class="batang"><span>A</span><div class="jalur"><div class="bar r" id="bar2a"></div></div><b id="v2a"></b></div>
+      <div class="batang"><span>B</span><div class="jalur"><div class="bar b" id="bar2b"></div></div><b id="v2b"></b></div>
+      <p class="hasil">Selisih: <b id="sel2"></b></p>
+      <p class="hasil">Rasio A : B = <b id="ras2"></b></p>
+      <p id="cat2" class="catatan"></p>
+    </div>
+
+    <div id="sim-3" class="sim">
+      <div class="subtabs">
+        <button data-sub="s3-faktor" class="on">Faktor skala</button>
+        <button data-sub="s3-peta">Skala, JP, JS</button>
+      </div>
+
+      <div id="s3-faktor" class="sub active">
+        <p>Persegi panjang awal berukuran 4 cm × 3 cm (garis putus-putus). Ubah faktor skalanya.</p>
+        <label>Faktor skala: <b id="k3">1</b>
+          <input type="range" id="s3" min="0.5" max="3" step="0.5" value="1"></label>
+        <div class="kanvas"><div class="rect asli"></div><div class="rect" id="rect3"></div></div>
+        <p class="hasil">Panjang: <b id="p3"></b></p>
+        <p class="hasil">Lebar: <b id="l3"></b></p>
+        <p id="c3" class="catatan"></p>
+      </div>
+
+      <div id="s3-peta" class="sub">
+        <p>Skala = Jarak Peta (JP) : Jarak Sebenarnya (JS). Pilih yang dicari, lalu atur dua lainnya.</p>
+        <label>Yang dicari:
+          <select id="cari3">
+            <option value="js">Jarak sebenarnya (JS)</option>
+            <option value="jp">Jarak peta (JP)</option>
+            <option value="skala">Skala</option>
+          </select></label>
+        <label>Skala: 1 :
+          <select id="skala3">
+            <option value="1000">1.000</option>
+            <option value="10000">10.000</option>
+            <option value="100000">100.000</option>
+            <option value="200000" selected>200.000</option>
+            <option value="500000">500.000</option>
+          </select></label>
+        <label>JP: <b id="vjp3">3</b> cm
+          <input type="range" id="jp3" min="1" max="20" value="3"></label>
+        <label>JS: <b id="vjs3">6</b> km
+          <input type="range" id="js3" min="1" max="100" value="6"></label>
+        <p class="hasil" id="hasil3"></p>
+        <p class="catatan">Skala ditulis 1 : S, artinya 1 cm di peta mewakili S cm sebenarnya. Rumus: skala = JP ÷ JS, JP = JS × skala, JS = JP ÷ skala.</p>
+      </div>
+    </div>
+
+    <div id="sim-4" class="sim">
+      <div class="subtabs">
+        <button data-sub="s4-eku" class="on">Rasio ekuivalen</button>
+        <button data-sub="s4-proporsi">Proporsi</button>
+        <button data-sub="s4-senilai">Perbandingan senilai</button>
+        <button data-sub="s4-balik">Perbandingan berbalik nilai</button>
+      </div>
+
+      <div id="s4-eku" class="sub active">
+        <p>Kalikan kedua bagian rasio dengan faktor yang sama, maka tabel rasio ekuivalen terisi otomatis.</p>
+        <label>Rasio awal, bagian pertama: <b id="a4">2</b>
+          <input type="range" id="s4a" min="1" max="9" value="2"></label>
+        <label>Rasio awal, bagian kedua: <b id="b4">3</b>
+          <input type="range" id="s4b" min="1" max="9" value="3"></label>
+        <label>Faktor yang disorot: <b id="k4">2</b>
+          <input type="range" id="s4k" min="1" max="6" value="2"></label>
+        <table class="tabel" id="tabel4"></table>
+        <p class="hasil" id="prop4"></p>
+        <p class="catatan">Semua rasio di tabel senilai dengan rasio awal.</p>
+      </div>
+
+      <div id="s4-proporsi" class="sub">
+        <p>Proporsi adalah pernyataan bahwa dua rasio bernilai sama: a : b = c : x. Atur a, b, dan c, lalu cari x dengan kali silang.</p>
+        <label>a: <b id="pav">2</b>
+          <input type="range" id="pa" min="1" max="9" value="2"></label>
+        <label>b: <b id="pbv">3</b>
+          <input type="range" id="pb" min="1" max="9" value="3"></label>
+        <label>c: <b id="pcv">12</b>
+          <input type="range" id="pc" min="1" max="20" value="12"></label>
+        <p class="hasil" id="pr1"></p>
+        <p class="hasil" id="pr2"></p>
+        <p class="hasil" id="pr3"></p>
+        <p class="catatan" id="cpr"></p>
+      </div>
+
+      <div id="s4-senilai" class="sub">
+        <p>Perbandingan senilai: jika satu besaran bertambah, besaran lainnya ikut bertambah (dan sebaliknya). Contoh: makin banyak buku, makin besar harganya.</p>
+        <label>Banyak buku awal: <b id="q1sv">3</b>
+          <input type="range" id="q1s" min="1" max="10" value="3"></label>
+        <label>Harga 1 buku: <b id="usv">Rp8.000</b>
+          <input type="range" id="us" min="1" max="10" value="8"></label>
+        <label>Banyak buku sekarang: <b id="q2sv">5</b>
+          <input type="range" id="q2s" min="1" max="20" value="5"></label>
+        <p class="hasil" id="rs1"></p>
+        <p class="hasil" id="rs2"></p>
+        <p class="hasil" id="rs3"></p>
+        <p class="hasil" id="rs4"></p>
+        <p class="catatan" id="cs"></p>
+      </div>
+
+      <div id="s4-balik" class="sub">
+        <p>Perbandingan berbalik nilai: jika satu besaran bertambah, besaran lainnya berkurang (dan sebaliknya). Contoh: makin banyak pekerja, makin sedikit hari yang dibutuhkan.</p>
+        <label>Pekerja awal: <b id="p1bv">6</b> orang
+          <input type="range" id="p1b" min="1" max="12" value="6"></label>
+        <label>Lama pekerjaan awal: <b id="h1bv">12</b> hari
+          <input type="range" id="h1b" min="1" max="30" value="12"></label>
+        <label>Pekerja sekarang: <b id="p2bv">12</b> orang
+          <input type="range" id="p2b" min="1" max="24" value="12"></label>
+        <p class="hasil" id="rb1"></p>
+        <p class="hasil" id="rb2"></p>
+        <p class="hasil" id="rb3"></p>
+        <p class="catatan" id="cb"></p>
+      </div>
+    </div>
+
+    <div id="sim-5" class="sim">
+      <p>Atur laju mobil, lalu tekan Jalankan. Grafik jarak terhadap waktu ikut tergambar.</p>
+      <label>Laju: <b id="v5">40</b> km/jam
+        <input type="range" id="s5" min="10" max="100" step="10" value="40"></label>
+      <div class="jalan"><div class="mobil" id="mobil5"></div></div>
+      <canvas id="grafik5" width="480" height="260" aria-label="Grafik jarak terhadap waktu"></canvas>
+      <button class="btn" id="go5">Jalankan</button>
+      <p class="hasil" id="info5"></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="latihan" class="page">
+  <h2>Latihan Soal</h2>
+  <p class="lead">Jawaban langsung diperiksa dan dibahas, jadi kamu bisa belajar dari tiap soal.</p>
+  <div id="latihan-box" class="card"></div>
+</section>
+
+<section id="kuis" class="page">
+  <h2>Kuis</h2>
+  <p class="lead">Jawab semua soal, lalu lihat skor akhirmu.</p>
+  <div id="kuis-box" class="card"></div>
+</section>
+
+<section id="battle" class="page">
+  <h2>Rasio Battle</h2>
+  <p class="lead">Kuis berkelompok untuk dimainkan di kelas: pilih nomor soal di papan, jawab bersama kelompokmu, kumpulkan poin dan jaga nyawa.</p>
+  <div class="card battle-card">
+    <ul class="battle-info">
+      <li><b>50 soal</b> pilihan ganda bab rasio, dengan poin 10, 20, atau 30 sesuai tingkat kesulitan.</li>
+      <li><b>Kelompok</b> bermain bergiliran, dan soal yang salah bisa dilempar ke kelompok lain.</li>
+      <li>Dimainkan oleh guru lewat layar proyektor, cocok untuk model pembelajaran kelompok.</li>
+    </ul>
+    <div class="row">
+      <a class="btn" href="rasio-battle/index.html" target="_blank" rel="noopener">Mainkan di tab baru ↗</a>
+      <button class="btn ghost" id="battle-embed" type="button">Tampilkan di halaman ini</button>
+    </div>
+    <div id="battle-wrap" hidden>
+      <iframe id="battle-frame" title="Rasio Battle" allow="fullscreen" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="pembuat" class="page">
+  <h2>Kreator</h2>
+  <p class="lead">Website pembelajaran ini disusun oleh mahasiswa Pendidikan Matematika UNNES, dengan bimbingan guru pamong dan dosen pembimbing.</p>
+
+  <h3 class="grup">Pengembang</h3>
+  <div class="creator-grid">
+    <article class="creator">
+      <img src="creator1.png" alt="Foto Farah Rahma Fakhira" loading="lazy">
+      <h4>Farah Rahma Fakhira</h4>
+      <p>Mahasiswa Pendidikan Matematika</p>
+      <p class="inst">UNNES LANTIP 8<br>SMP Negeri 39 Semarang</p>
+    </article>
+    <article class="creator">
+      <img src="creator2.png" alt="Foto Elsabila Nurbaity" loading="lazy">
+      <h4>Elsabila Nurbaity</h4>
+      <p>Mahasiswa Pendidikan Matematika</p>
+      <p class="inst">UNNES LANTIP 8<br>SMP Negeri 39 Semarang</p>
+    </article>
+  </div>
+
+  <h3 class="grup">Pembimbing</h3>
+  <div class="creator-grid">
+    <article class="creator">
+      <img src="gumong.png" alt="Foto Puji Susanti, S.Pd." loading="lazy">
+      <h4>Puji Susanti, S.Pd.</h4>
+      <p>Guru Pamong Pendidikan Matematika</p>
+      <p class="inst">UNNES LANTIP 8<br>SMP Negeri 39 Semarang</p>
+    </article>
+    <article class="creator">
+      <img src="dosenpembimbing.png" alt="Foto Ahmad Badawi, S.Pd., M.Pd." loading="lazy">
+      <h4>Ahmad Badawi, S.Pd., M.Pd.</h4>
+      <p>Dosen Pembimbing Pendidikan Matematika</p>
+      <p class="inst">UNNES LANTIP 8<br>SMP Negeri 39 Semarang</p>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
